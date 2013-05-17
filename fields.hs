@@ -10,7 +10,14 @@ import Text.Printf (printf)
 import Text.Regex  (splitRegex, mkRegex)
 
 
-splitColumns = splitRegex (mkRegex "\\|")
+-- Input field separator regexp
+inputFieldSeparatorRE = "\\|"
+
+-- Output field separator
+outputFieldSeparator  = "  "
+
+
+splitColumns = splitRegex (mkRegex inputFieldSeparatorRE)
 
 rowsToColumns = transpose
 columnsToRows = transpose
@@ -25,7 +32,7 @@ formatCell = printf "%-*s"
 
 columnSize = maximum . map length
 
-mkLine = concat . intersperse "  "
+mkLine = concat . intersperse outputFieldSeparator
 
 
 main = do
